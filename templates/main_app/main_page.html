@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <script src="{% static 'main_app/js/main_page_scripts.js' %}"></script>
+</head>
+<body onload="djangoControlCondition({{ data.dj_control_state }})">
+    <div>
+        <label id="lab" aria-flowto="right">Django control<input id="dj_control" type="checkbox" name="dj_control" onchange="djangoControlChangeCondition()" /></label>
+    </div>
+</body>
+</html>
