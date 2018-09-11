@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import MainPageView, ChangeConfigView
+from .views import main_page_view
 
 
 urlpatterns = [
-    path('', MainPageView.as_view()),
-    path('change_config', ChangeConfigView.as_view())
+    path('', main_page_view),
 ]

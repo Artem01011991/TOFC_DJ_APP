@@ -34,3 +34,24 @@ class ChangeConfigRestView(APIView):
         with open('../' + CONFIG_FILE_NAME, 'w') as file:
             conf.write(file)
             file.close()
+
+
+class CurrentConfigStateView(APIView):
+    authentication_classes = (authentication.BasicAuthentication,)
+    permission_classes = (permissions.IsAdminUser,)
+
+    def get(self, request, format=None):
+        if not request.GET:
+            conf = configparser.ConfigParser()
+            conf.read('../' + CONFIG_FILE_NAME)
+            index_act_mode = conf['Bot section']['index activation mode']
+            bin_act_mod = conf['Bot section']['binance activation mode']
+            dj_conf_dom = conf['Bot section']['django control']
+            return Response(
+                data={
+                    'index_act_mode': index_act_mode,
+                    'bin_act_mode': bin_act_mod,
+                    'dj_conf_mode': dj_conf_dom,
+                },
+                status=200
+            )
