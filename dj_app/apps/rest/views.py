@@ -11,29 +11,41 @@ class ChangeConfigRestView(APIView):
     permission_classes = (permissions.IsAdminUser,)
 
     def get(self, request, format=None):
-        if request.GET['dj_control']:
-            if request.GET['dj_control'] == 'true':
-                self.django_control(True)
-            elif request.GET['dj_control'] == 'false':
-                self.django_control(False)
+        if request.GET['id']:
+            if request.GET['value'] == 'true':
+                self.settings_control(request.GET['id'], True)
+            else:
+                self.settings_control(request.GET['id'], False)
             return Response(status=200)
-        Response('Incorrect GET request', status=400)
+        return Response('Incorrect GET request', status=400)
 
-    @staticmethod
-    def django_control(enabling:bool):  # Disabling heroku server if django app active
+    def settings_control(self, conf_id, enabling:bool):  # Disabling heroku server if django app active
         conf = configparser.ConfigParser()
         conf.read('../' + CONFIG_FILE_NAME)
+        conf_names = {
+            'index_bot_control': 'index activation mode',
+            'binance_bot_control': 'binance activation mode',
+            'dj_control': 'django control'
+        }
 
         if enabling:
-            subprocess.run(['heroku', 'ps:scale', 'clock=0', '-a', HEROKU_APP_NAME])
-            conf['Bot section']['Django control'] = 'true'
+            conf['Bot section'][conf_names[conf_id]] = 'true'
         else:
-            subprocess.run(['heroku', 'ps:scale', 'clock=1', '-a', HEROKU_APP_NAME])
-            conf['Bot section']['Django control'] = 'false'
+            conf['Bot section'][conf_names[conf_id]] = 'false'
+
+        if conf_id == 'dj_control':
+            self.django_control(enabling)
 
         with open('../' + CONFIG_FILE_NAME, 'w') as file:
             conf.write(file)
             file.close()
+
+    @staticmethod
+    def django_control(enabling):
+        if enabling:
+            subprocess.run(['heroku', 'ps:scale', 'clock=0', '-a', HEROKU_APP_NAME])
+        else:
+            subprocess.run(['heroku', 'ps:scale', 'clock=1', '-a', HEROKU_APP_NAME])
 
 
 class CurrentConfigStateView(APIView):
@@ -49,9 +61,9 @@ class CurrentConfigStateView(APIView):
             dj_conf_dom = conf['Bot section']['django control']
             return Response(
                 data={
-                    'index_act_mode': index_act_mode,
-                    'bin_act_mode': bin_act_mod,
-                    'dj_conf_mode': dj_conf_dom,
+                    'index_bot_control': index_act_mode,
+                    'binance_bot_control': bin_act_mod,
+                    'dj_control': dj_conf_dom,
                 },
                 status=200
             )

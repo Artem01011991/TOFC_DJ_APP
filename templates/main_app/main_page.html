@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'main_app/js/main_page_scripts.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/config.css' %}">
 </head>
-<body onload="configControlCondition()">
+<body onload="requestConfigValue(document.querySelectorAll('[id$=_control]'))">
     <div id="config">
-        <label>Django control<input id="dj_control" type="checkbox" name="dj_control" onchange="djangoControlChangeCondition()" /></label>
-        <label>Index bot active<input id="index_bot_control" type="checkbox" name="ind_bot_control" onchange="djangoControlChangeCondition()" /></label>
-        <label>Binance bot active<input id="binance_bot_control" type="checkbox" name="bin_bot_control" onchange="djangoControlChangeCondition()" /></label>
+        <label>Django control<input id="dj_control" type="checkbox" name="dj_control" onchange="changeConfigValue(this)" /></label>
+        <label>Index bot active<input id="index_bot_control" type="checkbox" name="ind_bot_control" onchange="changeConfigValue(this)" /></label>
+        <label>Binance bot active<input id="binance_bot_control" type="checkbox" name="bin_bot_control" onchange="changeConfigValue(this)" /></label>
     </div>
 </body>
 </html>
