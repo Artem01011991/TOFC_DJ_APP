@@ -17,18 +17,12 @@ class ConfRestBaseView(APIView):
 class ChangeConfigRestView(ConfRestBaseView):
     def get(self, request, format=None):
         if request.GET['id']:
-            if request.GET['value'] == 'true':
-                self.settings_control(request.GET['id'], True)
-            else:
-                self.settings_control(request.GET['id'], False)
+            self.settings_control(request.GET['id'], True if request.GET['value'] == 'true' else False)
             return Response(status=200)
         return Response('Incorrect GET request', status=400)
 
     def settings_control(self, conf_id, enabling:bool):  # Disabling heroku server if django app active
-        if enabling:
-            self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'true'
-        else:
-            self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'false'
+        self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'true' if enabling else 'false'
 
         if conf_id == 'dj_control':
             self.django_control(enabling)
@@ -39,10 +33,7 @@ class ChangeConfigRestView(ConfRestBaseView):
 
     @staticmethod
     def django_control(enabling):
-        if enabling:
-            subprocess.Popen(['heroku', 'ps:scale', 'clock=0', '-a', HEROKU_APP_NAME])
-        else:
-            subprocess.Popen(['heroku', 'ps:scale', 'clock=1', '-a', HEROKU_APP_NAME])
+        subprocess.Popen(['heroku', 'ps:scale', 'clock=1' if enabling else 'clock=0', '-a', HEROKU_APP_NAME])
 
 
 class CurrentConfigStateView(ConfRestBaseView):
