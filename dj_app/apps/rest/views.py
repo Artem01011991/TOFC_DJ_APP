@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from .settings import HEROKU_APP_NAME, CONFIG_FILE_NAME, CONFIG_NAME_BY_ID
+from .settings import HEROKU_APP_NAME, CONFIG_FILE_NAME, CONFIG_NAME_BY_ID, SCHEDULER_IDS
 import subprocess
 import configparser
 

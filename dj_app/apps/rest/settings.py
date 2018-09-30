@@ -5,3 +5,4 @@ CONFIG_NAME_BY_ID = {
             'binance_bot_control': 'binance activation mode',
             'dj_control': 'django control'
         }
+SCHEDULER_IDS = {'index': 'index', 'binance': 'binance'}

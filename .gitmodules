@@ -1,6 +1,3 @@
-[submodule "bot_dir"]
-	path = dj_app/bot_dir
-	url = git@github.com:Artem01011991/TOFC_ETH.git
 [submodule "dj_app/TOFC_ETH"]
 	path = dj_app/TOFC_ETH
 	url = git@github.com:Artem01011991/TOFC_ETH.git
