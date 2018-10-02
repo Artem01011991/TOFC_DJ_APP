@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from .settings import HEROKU_APP_NAME, CONFIG_FILE_NAME, CONFIG_NAME_BY_ID, SCHEDULER_IDS
+from dj_app.TOFC_ETH.settings import CONFIG_NAME_BY_ID, HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
+from dj_app.TOFC_ETH.controling_opirations import modules_manipulations
 import subprocess
 import configparser
 
@@ -11,7 +12,7 @@ class ConfRestBaseView(APIView):
     permission_classes = (permissions.IsAdminUser,)
 
     conf = configparser.ConfigParser()
-    conf.read('../' + CONFIG_FILE_NAME)
+    conf.read(CONF_PATH)
 
 
 class ChangeConfigRestView(ConfRestBaseView):
@@ -26,13 +27,15 @@ class ChangeConfigRestView(ConfRestBaseView):
 
         if conf_id == 'dj_control':
             self.django_control(enabling)
+        else:
+            modules_manipulations({next(SCHEDULER_IDS[i] for i in SCHEDULER_IDS if i in conf_id): enabling})
 
-        with open('../' + CONFIG_FILE_NAME, 'w') as file:
+        with open(CONF_PATH, 'w') as file:
             self.conf.write(file)
             file.close()
 
     @staticmethod
-    def django_control(enabling):
+    def django_control(enabling:bool):
         subprocess.Popen(['heroku', 'ps:scale', 'clock=1' if enabling else 'clock=0', '-a', HEROKU_APP_NAME])
 
 
