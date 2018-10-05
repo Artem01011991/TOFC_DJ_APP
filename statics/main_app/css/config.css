@@ -1,5 +1,21 @@
-#config {
-    display: flex;
-    flex-direction: column;
-    float: right;
+.config-container {
+    display: grid;
+    text-align: center;
+    grid-template-columns: auto auto auto;
+}
+
+.config-container > label {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.label-dj_control {
+    grid-column: 1 / span 2;
+}
+
+.label-database {
+    grid-column: 3;
+    grid-row: 1 / span 2;
 }
