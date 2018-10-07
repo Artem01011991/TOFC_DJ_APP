@@ -1,6 +1,0 @@
-.env
-*.pyc
-__pycache__/
-.idea/
-old_solutions/
-local_settings.py
