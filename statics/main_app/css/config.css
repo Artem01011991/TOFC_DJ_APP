@@ -1,7 +1,7 @@
 .config-container {
     display: grid;
     text-align: center;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
 }
 
 .config-container > label {

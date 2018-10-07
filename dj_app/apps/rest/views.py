@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from dj_app.TOFC_ETH.settings import CONFIG_NAME_BY_ID, HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
-from dj_app.TOFC_ETH.controling_opirations import modules_manipulations
+from TOFC_ETH.settings import CONFIG_NAME_BY_ID, HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
+from TOFC_ETH.controling_opirations import modules_manipulations
 import subprocess
 import configparser
 
