@@ -2,6 +2,7 @@
   "name": "constructor",
   "version": "1.0.0",
   "devDependencies": {
-    "gulp": "2.0.1"
+    "gulp": "^3.9.1",
+    "gulp-handlebars": "^5.0.2"
   }
 }
