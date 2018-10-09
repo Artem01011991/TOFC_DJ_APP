@@ -1,5 +1,7 @@
 #other
 .idea/
+construction/node_modules/
+construction/package-lock.json
 config.ini
 
 # Byte-compiled / optimized / DLL files
