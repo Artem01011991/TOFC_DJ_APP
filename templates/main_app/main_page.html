@@ -7,11 +7,11 @@
     <script src="{% static 'main_app/js/main_page_scripts.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/config.css' %}">
 </head>
-<body onload="requestConfigValue(document.querySelectorAll('[id$=_control]'))">
+<body onload="requestConfigValue()">
     <div class="config-container">
-        <label class="label-dj_control">Django control<input id="dj_control" type="checkbox" name="dj_control" onchange="changeConfigValue(this)" /></label>
-        <label>Index bot active<input id="index_bot_control" type="checkbox" name="ind_bot_control" onchange="changeConfigValue(this)" /></label>
-        <label>Binance bot active<input id="binance_bot_control" type="checkbox" name="bin_bot_control" onchange="changeConfigValue(this)" /></label>
+        <label class="label-dj_control">Django control<input id={{ ids.django }} type="checkbox" name="dj_control" onchange="changeConfigValue(this)" /></label>
+        <label>Index bot active<input id={{ ids.index }} type="checkbox" name="ind_bot_control" onchange="changeConfigValue(this)" /></label>
+        <label>Binance bot active<input id={{ ids.binance }} type="checkbox" name="bin_bot_control" onchange="changeConfigValue(this)" /></label>
     </div>
     <label class="label-database">Database data</label>
 </body>

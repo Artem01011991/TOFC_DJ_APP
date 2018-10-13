@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from TOFC_ETH.settings import CONFIG_NAME_BY_ID, HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
+from TOFC_ETH.settings import HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
 from TOFC_ETH.controling_opirations import modules_manipulations
+from dj_app.apps.main_app.settings import MAIN_PAGE_ELEMS_IDS, CONFIG_NAME_BY_ID
 import subprocess
 import configparser
 
@@ -25,7 +26,7 @@ class ChangeConfigRestView(ConfRestBaseView):
     def settings_control(self, conf_id, enabling:bool):  # Disabling heroku server if django app active
         self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'true' if enabling else 'false'
 
-        if conf_id == 'dj_control':
+        if conf_id == MAIN_PAGE_ELEMS_IDS['django']:
             self.django_control(enabling)
         else:
             modules_manipulations({next(SCHEDULER_IDS[i] for i in SCHEDULER_IDS if i in conf_id): enabling})

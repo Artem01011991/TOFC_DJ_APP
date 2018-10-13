@@ -1,8 +1,9 @@
 let xhttp = new XMLHttpRequest();
 
-function requestConfigValue(elems) {
+function requestConfigValue() {
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200){
+            document.write(elems.length);
             setConfigValue(JSON.parse(this.responseText), elems);
         }
     };

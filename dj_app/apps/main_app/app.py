@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class MainConfig(AppConfig):
-    name = 'main_app'
+    name = 'dj_app.apps.main_app'
