@@ -1,26 +1,18 @@
 let xhttp = new XMLHttpRequest();
 
-function requestConfigValue() {
+function requestConfigValue(url) {
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200){
-            document.write(elems.length);
-            setConfigValue(JSON.parse(this.responseText), elems);
+            let elems_state = JSON.parse(this.responseText);
+
+            for(i in elems_state) {
+                document.getElementById(i).checked = elems_state[i] === 'true';
+            }
         }
     };
 
-    xhttp.open('GET', window.location.protocol + '/rest/config-current-state', true);
+    xhttp.open('GET', window.location.protocol + url, true);
     xhttp.send();
-}
-
-function setConfigValue(id_value_json, elems) {
-    for(i = 0; i < elems.length; i++) {
-        if(id_value_json[elems[i].id] == 'true') {
-            elems[i].checked = true;
-        }
-        else {
-            elems[i].checked = false;
-        }
-    }
 }
 
 function changeConfigValue(elem) {
@@ -31,6 +23,6 @@ function changeConfigValue(elem) {
         xhttp.send();
     }
     else {
-        requestConfigValue([elem]);
+        elem.checked = elem.checked != true;
     }
 }

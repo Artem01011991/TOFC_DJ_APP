@@ -7,7 +7,7 @@
     <script src="{% static 'main_app/js/main_page_scripts.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/config.css' %}">
 </head>
-<body onload="requestConfigValue()">
+<body onload="requestConfigValue('{% url 'rest:conf-cur-state' %}')">
     <div class="config-container">
         <label class="label-dj_control">Django control<input id={{ ids.django }} type="checkbox" name="dj_control" onchange="changeConfigValue(this)" /></label>
         <label>Index bot active<input id={{ ids.index }} type="checkbox" name="ind_bot_control" onchange="changeConfigValue(this)" /></label>
