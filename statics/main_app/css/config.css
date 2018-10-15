@@ -4,18 +4,13 @@
     grid-template-columns: auto auto;
 }
 
+.config-container label:first-child {
+    grid-column: 1 / span 2;
+}
+
 .config-container > label {
     margin: 10px;
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px;
-}
-
-.label-dj_control {
-    grid-column: 1 / span 2;
-}
-
-.label-database {
-    grid-column: 3;
-    grid-row: 1 / span 2;
 }
