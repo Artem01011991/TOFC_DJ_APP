@@ -5,7 +5,8 @@ from .apps.rest import urls as rest_urls
 
 
 urlpatterns = [
-    path('rest/', include(rest_urls)),
     path('', include(urls)),
+    path('rest/', include(rest_urls)),
     path('admin/', admin.site.urls),
 ]
+

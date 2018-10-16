@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
-    <script src="{% static 'main_app/js/main_page_scripts.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/config.css' %}">
+    <script src="{% static app_label|add:'/js/main_page_scripts.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static app_label|add:'/css/config.css' %}">
 </head>
 <body onload="requestConfigValue('{% url 'rest:conf-cur-state' %}')">
     <div class="config-container">
