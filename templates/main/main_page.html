@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <script src="{% static app_label|add:'/js/main_page_scripts.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static app_label|add:'/css/config.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static app_label|add:'/css/main_page_config.css' %}">
 </head>
 <body onload="requestConfigValue('{% url 'rest:conf-cur-state' %}')">
     <div class="config-container">
