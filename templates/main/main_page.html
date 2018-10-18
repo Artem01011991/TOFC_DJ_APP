@@ -13,6 +13,18 @@
         <label>Index bot active<input id={{ ids.index }} type="checkbox" onchange="changeConfigValue(this)" /></label>
         <label>Binance bot active<input id={{ ids.binance }} type="checkbox" onchange="changeConfigValue(this)" /></label>
     </div>
-    <label>Database data</label>
+    {% for i in bin_min_sell_price %}
+        {{ i.price }}
+    {% endfor %}
+    <div>
+        <label>Local DB</label>
+        <label>Index<label></label><label></label></label>
+        <label>Binance<label></label><label></label></label>
+    </div>
+    <div>
+        <label>Heroku DB</label>
+        <label>Index<label></label><label></label></label>
+        <label>Binance<label></label><label></label></label>
+    </div>
 </body>
 </html>
