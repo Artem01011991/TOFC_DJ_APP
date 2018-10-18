@@ -11,8 +11,13 @@ import sass
 class Command(BaseCommand):
     help = 'Compiling css'
 
+    def add_arguments(self, parser):
+        parser.add_argument('app_names', nargs='*')
+
     def handle(self, *args, **options):
-        for i in apps.get_app_configs():
+        configs = (apps.get_app_config(i) for i in options['app_names']) if options['app_names'] else apps.get_app_configs()
+
+        for i in configs:
             try:
                 self.stdout.write('Compiling css files for {app}...'.format(app=i.label))
 
