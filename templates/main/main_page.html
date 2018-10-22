@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Main page</title>
     <script src="{% static app_label|add:'/js/main_page_scripts.js' %}"></script>
@@ -10,21 +11,20 @@
 <body onload="requestConfigValue('{% url 'rest:conf-cur-state' %}')">
     <div class="config-container">
         <label>Django control<input id={{ ids.django }} type="checkbox" onchange="changeConfigValue(this)" /></label>
-        <label>Index bot active<input id={{ ids.index }} type="checkbox" onchange="changeConfigValue(this)" /></label>
+        <div>
+            <label>Index bot active<input id={{ ids.index }} type="checkbox" onchange="changeConfigValue(this)" /></label>
+            <table>
+                <tr><th>New timestamp:</th><td>1</td></tr>
+                <tr><th>Minimal sell price:</th><td>1</td></tr>
+                <tr><th>Buy range:</th><td>1</td></tr>
+            </table>
+        </div>
         <label>Binance bot active<input id={{ ids.binance }} type="checkbox" onchange="changeConfigValue(this)" /></label>
-    </div>
-    {% for i in bin_min_sell_price %}
-        {{ i.price }}
-    {% endfor %}
-    <div>
-        <label>Local DB</label>
-        <label>Index<label></label><label></label></label>
-        <label>Binance<label></label><label></label></label>
-    </div>
-    <div>
-        <label>Heroku DB</label>
-        <label>Index<label></label><label></label></label>
-        <label>Binance<label></label><label></label></label>
+            <table>
+                <tr><th>New timestamp:</th><td>1</td></tr>
+                <tr><th>Minimal sell price:</th><td>1</td></tr>
+                <tr><th>Buy range:</th><td>1</td></tr>
+            </table>
     </div>
 </body>
 </html>
