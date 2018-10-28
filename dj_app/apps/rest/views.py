@@ -17,19 +17,19 @@ class ConfRestBaseView(APIView):
 
 
 class ChangeConfigRestView(ConfRestBaseView):
-    def get(self, request, format=None):
-        if request.GET['id']:
-            self.settings_control(request.GET['id'], True if request.GET['value'] == 'true' else False)
+    def post(self, request, format=None):
+        if request.POST['id']:
+            self.settings_control(request.POST['id'], True if request.POST['value'] == 'true' else False)
             return Response(status=200)
-        return Response('Incorrect GET request', status=400)
+        return Response('Incorrect POST request', status=400)
 
     def settings_control(self, conf_id, enabling:bool):  # Disabling heroku server if django app active
         self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'true' if enabling else 'false'
-
-        if conf_id == MAIN_PAGE_ELEMS_IDS['django']:
-            self.django_control(enabling)
-        else:
-            modules_manipulations({next(SCHEDULER_IDS[i] for i in SCHEDULER_IDS if i in conf_id): enabling})
+        # TODO uncomment
+        # if conf_id == MAIN_PAGE_ELEMS_IDS['django']:
+        #     self.django_control(enabling)
+        # else:
+        #     modules_manipulations({next(SCHEDULER_IDS[i] for i in SCHEDULER_IDS if i in conf_id): enabling})
 
         with open(CONF_PATH, 'w') as file:
             self.conf.write(file)

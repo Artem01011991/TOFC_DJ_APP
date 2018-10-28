@@ -1,5 +1,5 @@
 """
-Needs for apps 'lable' property be assigned in each app.py
+App 'lable' property must be assigned in each app.py
 """
 from django.core.management.base import BaseCommand
 from django.apps import apps
@@ -20,7 +20,6 @@ class Command(BaseCommand):
         for i in configs:
             try:
                 self.stdout.write('Compiling css files for {app}...'.format(app=i.label))
-
                 sass.compile(
                     dirname=(
                         os.path.join(settings.BASE_DIR, 'sass/{folder}'.format(folder=i.label)),

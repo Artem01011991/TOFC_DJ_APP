@@ -1,7 +1,7 @@
 MAIN_PAGE_ELEMS_IDS = {
-  'django': 'django-control-id',
-  'index': 'index-control-id',
-  'binance': 'binance-control-id'
+    'index': 'ind_id',
+    'binance': 'bin_id',
+    'django': 'dj_id'
 }
 
 CONFIG_NAME_BY_ID = {

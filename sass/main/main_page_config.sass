@@ -1,24 +1,37 @@
 $config-class-name: '.config-container'
+$config-hover-class-name: '.config-hover'
 
 @mixin borders
   margin: 5px
   padding: 5px
   border: 2px solid black
-  border-radius: 5px
+    radius: 5px
+
+#{$config-hover-class-name}
+  &:hover
+    background: #cccccc !important
+    cursor: pointer
 
 #{$config-class-name}
   display: grid
   text-align: center
   grid-template-columns: auto auto
 
+  div
+    table
+      @include borders
+
+      width: 99%
+      text-align: justify
+
+    label
+      display: block
+
   label:first-child
     grid-column: 1 / span 2
+
+  label
     @include borders
 
-  > label
-
-    &:hover
-      background: #cccccc !important
-      cursor: pointer
     input
       visibility: hidden

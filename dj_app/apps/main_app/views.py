@@ -9,5 +9,8 @@ def main_page_view(request):
     return render(
         request,
         '{label}/main_page.html'.format(label=app_label),
-        {'ids': MAIN_PAGE_ELEMS_IDS, 'app_label': app_label}
+        {
+            'ids': MAIN_PAGE_ELEMS_IDS,
+            'app_label': app_label,
+        }
     )
