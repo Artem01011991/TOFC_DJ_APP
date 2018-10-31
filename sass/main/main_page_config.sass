@@ -1,5 +1,5 @@
-$config-class-name: '.config-container'
-$config-hover-class-name: '.config-hover'
+$config-class-name: get-class-name('config')
+$config-hover-class-name: get-class-name('config-hover')
 
 @mixin borders
   margin: 5px
@@ -27,11 +27,11 @@ $config-hover-class-name: '.config-hover'
     label
       display: block
 
-  label:first-child
-    grid-column: 1 / span 2
-
   label
     @include borders
+
+    &:first-child
+      grid-column: 1 / span 2
 
     input
       visibility: hidden
