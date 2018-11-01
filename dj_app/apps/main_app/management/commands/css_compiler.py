@@ -39,4 +39,4 @@ class Command(BaseCommand):
 
     @staticmethod
     def _get_css_class_name(class_name_key):
-        return CSS_CLASS_NAMES[class_name_key]
+        return '.' + CSS_CLASS_NAMES[class_name_key]
