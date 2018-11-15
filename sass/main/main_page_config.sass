@@ -1,18 +1,15 @@
-$config-class-name: get-class-name('config')
-$config-hover-class-name: get-class-name('config-hover')
-
 @mixin borders
   margin: 5px
   padding: 5px
   border: 2px solid black
     radius: 5px
 
-#{$config-hover-class-name}
+.config-hover
   &:hover
     background: #cccccc !important
     cursor: pointer
 
-#{$config-class-name}
+.config-container
   display: grid
   text-align: center
   grid-template-columns: auto auto

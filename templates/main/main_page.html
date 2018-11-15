@@ -6,14 +6,13 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <script src="{% static app_label|add:'/js/main_page_scripts.js' %}"></script>
-    {{ ids|json_script:'elems_ids' }}
-    <link rel="stylesheet" type="text/css" href="{% static app_label|add:'/css/main_page_config.css' %}">
+    <link rel="stylesheet" title="Main page config" type="text/css" href="{% static app_label|add:'/css/main_page_config.css' %}">
 </head>
 <body onload="requestConfigValue('{% url 'rest:conf-cur-state' %}')">
     <div class="config-container">
-        <label class="config-hover">Django control<input id={{ ids.django }} type="checkbox" onchange="changeConfigValue(this)" /></label>
+        <label class="config-hover">Django control<input id="dj" type="checkbox" onchange="changeConfigValue(this)" /></label>
         <div>
-            <label class="config-hover">Index bot active<input id={{ ids.index }} type="checkbox" onchange="changeConfigValue(this)" /></label>
+            <label class="config-hover">Index bot active<input id="ind" type="checkbox" onchange="changeConfigValue(this)" /></label>
             <table>
                 <tr><th>New timestamp:</th><td>{{ time_stamp|default:'No data' }}</td></tr>
                 <tr><th>Minimal sell price:</th><td>{{ min_sell_price|default:'No data' }}</td></tr>
@@ -21,7 +20,7 @@
             </table>
         </div>
         <div>
-            <label class="config-hover">Binance bot active<input id={{ ids.binance }} type="checkbox" onchange="changeConfigValue(this)" /></label>
+            <label class="config-hover">Binance bot active<input id="bin" type="checkbox" onchange="changeConfigValue(this)" /></label>
             <table>
                 <tr><th>New timestamp:</th><td>{{ time_stamp|default:'No data' }}</td></tr>
                 <tr><th>Minimal sell price:</th><td>{{ min_sell_price|default:'No data' }}</td></tr>

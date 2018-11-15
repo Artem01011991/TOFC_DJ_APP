@@ -1,44 +1,43 @@
 let xhttp = new XMLHttpRequest();
 
-function setStateOfConfigElements(elem, state) {
-    elem.checked = state;
-    elem.parentElement.style.background = state?'#66ff99':'unset';
-}
+function setAccessabilityOfElements(elem_id, state) {
+    if(elem_id === 'dj'){
+        let elems = [document.getElementById('bin'), document.getElementById('ind')],
+            dj_elem = document.getElementById(elem_id);
 
-function setAccessabilityOfElements(elem_id, dj_dis) {
-    let elems_ids = JSON.parse(document.getElementById('elems_ids').textContent);
-
-    if(elem_id == elems_ids['django']){
-        let elems = [document.getElementById(elems_ids['binance']), document.getElementById(elems_ids['index'])];
-        dj_dis = true;
+        dj_elem.checked = state;
+        dj_elem.parentElement.style.background = state?'#66ff99':'unset';
 
         for (i in elems){
-            elems[i].parentElement.parentElement.style.opacity = '0.5';
-            elems[i].parentElement.style.cursor = 'not-allowed';
-            elems[i].parentElement.classList.remove('config-hover');
-            elems[i].disabled = true;
+            elems[i].parentElement.style.opacity = state?'unset':'0.5';
+            elems[i].parentElement.style.cursor = state?'pointer':'not-allowed';
+
+            // The hover class removing
+            if(!state){
+                elems[i].parentElement.classList.remove('config-hover');
+            }
+            else {
+                elems[i].parentElement.classList.add('config-hover');
+            }
+
+            elems[i].disabled = !state;
         }
     }
-    // else{
-    //     let elem = document.getElementById(elem_id);
-    //     elem.nextSibling.style.opacity = '0.5';
-    // }
-
-    return dj_dis
+    else{
+        let elem = document.getElementById(elem_id);
+        elem.parentElement.style.background = state?'#66ff99':'unset';
+        elem.parentElement.nextElementSibling.style.opacity = state?'unset':'0.5';
+    }
 }
 
 function requestConfigValue(url) {
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200){
             let elems_state = JSON.parse(this.responseText);
-            let dj_disabled = false; // Prevent calling once more setAccessabilityOfElements if django control off
 
+            // Elements state changing
             for(i in elems_state) {
-                setStateOfConfigElements(document.getElementById(i), elems_state[i] === 'true');
-
-                if(elems_state[i] === 'false' && !dj_disabled){
-                    dj_disabled = setAccessabilityOfElements(i, dj_disabled);
-                }
+                setAccessabilityOfElements(i, elems_state[i] === 'true');
             }
         }
     };
@@ -50,14 +49,15 @@ function requestConfigValue(url) {
 function changeConfigValue(elem) {
     let answer = window.confirm('Change value to: "' + elem.checked + '"');
 
+    // Changing configuration
     if (answer) {
         xhttp.open('POST', window.location.protocol + '/rest/', true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send('id=' + elem.id + '&value=' + elem.checked);
 
-        setStateOfConfigElements(elem, elem.checked);
+        setAccessabilityOfElements(elem.id, elem.checked);
     }
     else {
-        setStateOfConfigElements(elem, elem.checked != true);
+        setAccessabilityOfElements(elem.id, elem.checked != true);
     }
 }
