@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import ChangeConfigRestView, CurrentConfigStateView
 
+from .views import ChangeConfigRestView, CurrentConfigStateView
 
 app_name = 'rest'
 urlpatterns = [

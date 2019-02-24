@@ -1,11 +1,13 @@
-from rest_framework.views import APIView
+import configparser
+import subprocess
+
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from TOFC_ETH.settings import HEROKU_APP_NAME, CONF_PATH, SCHEDULER_IDS
-from TOFC_ETH.controling_opirations import modules_manipulations
+from rest_framework.views import APIView
+
 from dj_app.apps.main_app.settings import CONFIG_NAME_BY_ID
-import subprocess
-import configparser
+# from TOFC_ETH.controling_opirations import modules_manipulations
+from TOFC_ETH.settings import CONF_PATH, HEROKU_APP_NAME  # SCHEDULER_IDS
 
 
 class ConfRestBaseView(APIView):
@@ -23,7 +25,7 @@ class ChangeConfigRestView(ConfRestBaseView):
             return Response(status=200)
         return Response('Incorrect POST request', status=400)
 
-    def settings_control(self, conf_id, enabling:bool):  # Disabling heroku server if django app active
+    def settings_control(self, conf_id, enabling: bool):  # Disabling heroku server if django app active
         self.conf['Bot section'][CONFIG_NAME_BY_ID[conf_id]] = 'true' if enabling else 'false'
         # TODO uncomment
         # if conf_id == 'dj':
@@ -36,7 +38,7 @@ class ChangeConfigRestView(ConfRestBaseView):
             file.close()
 
     @staticmethod
-    def django_control(enabling:bool):
+    def django_control(enabling: bool):
         subprocess.Popen(['heroku', 'ps:scale', 'clock=1' if enabling else 'clock=0', '-a', HEROKU_APP_NAME])
 
 

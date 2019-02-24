@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .app import MainConfig
+
+from .apps import MainConfig
 
 
 def main_page_view(request):
