@@ -1,6 +1,6 @@
 #other
 .idea/
-statics/**/css/
+static/**/css/
 config.ini
 
 # Byte-compiled / optimized / DLL files
@@ -61,7 +61,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 migrations/
-!dj_app/apps/main_app/migrations/
+!apps/main/migrations/
 
 # Flask stuff:
 instance/

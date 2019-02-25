@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'apps.main',
-    'apps.rest',
+    'apps.index',
+    'apps.binance'
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'NAME': 'Default',
         'DIRS': ['templates'],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -70,7 +71,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'tofc',
         'USER': 'tofc',
         'PASSWORD': '1234',
         'HOST': 'localhost',
@@ -125,7 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'statics'
+STATIC_ROOT = 'static'
 
 
 AUTH_USER_MODEL = 'main.User'
