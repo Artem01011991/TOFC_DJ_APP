@@ -16,7 +16,7 @@ class AbstractBaseMinimalSellPriceModel(models.Model):
         verbose_name = 'Minimal sell price'
 
 
-class AbstractBasePriceStamp(models.Model):
+class AbstractBasePriceStampModel(models.Model):
     created = models.DateTimeField(verbose_name='stock exchange price timestamp', null=True, blank=True)
     price = models.FloatField(verbose_name='price rate', null=True, blank=True)
 
@@ -30,8 +30,8 @@ class BinanceMinimalSellPriceModel(AbstractBaseMinimalSellPriceModel):
         db_table = 'binance_minimal_sell_price'
 
 
-class BinancePriceStamp(AbstractBasePriceStamp):
-    class Meta(AbstractBasePriceStamp.Meta):
+class BinancePriceStampModel(AbstractBasePriceStampModel):
+    class Meta(AbstractBasePriceStampModel.Meta):
         db_table = 'binance_price_stamp'
 
 
@@ -42,6 +42,6 @@ class IndexMinimalSellPriceModel(AbstractBaseMinimalSellPriceModel):
         db_table = 'index_minimal_sell_price'
 
 
-class IndexPriceStamp(models.Model):
-    class Meta(AbstractBasePriceStamp.Meta):
+class IndexPriceStampModel(models.Model):
+    class Meta(AbstractBasePriceStampModel.Meta):
         db_table = 'index_price_stamp'

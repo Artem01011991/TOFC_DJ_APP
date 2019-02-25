@@ -5,7 +5,7 @@ from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from dj_app.apps.main_app.settings import CONFIG_NAME_BY_ID
+from apps.main.settings import CONFIG_NAME_BY_ID
 # from TOFC_ETH.controling_opirations import modules_manipulations
 from TOFC_ETH.settings import CONF_PATH, HEROKU_APP_NAME  # SCHEDULER_IDS
 
