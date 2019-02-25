@@ -61,6 +61,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 migrations/
+!dj_app/apps/main_app/migrations/
 
 # Flask stuff:
 instance/

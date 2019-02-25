@@ -14,17 +14,17 @@
         <div>
             <label class="config-hover">Index bot active<input id="ind" type="checkbox" onchange="changeConfigValue(this)" /></label>
             <table>
-                <tr><th>New timestamp:</th><td>{% templatetag openvariable %} time_stamp|default:'No data' {% templatetag closevariable %}</td></tr>
-                <tr><th>Minimal sell price:</th><td>{% templatetag openvariable %} min_sell_price|default:'No data' {% templatetag closevariable %}</td></tr>
-                <tr><th>Buy range:</th><td>{% templatetag openvariable %} buy_range|default:'No data' {% templatetag closevariable %}</td></tr>
+                <tr><th>New timestamp:</th><td>{{ time_stamp|default:'No data' }}</td></tr>
+                <tr><th>Minimal sell price:</th><td>{{ min_sell_price|default:'No data' }}</td></tr>
+                <tr><th>Buy range:</th><td>{{ buy_range|default:'No data' }}</td></tr>
             </table>
         </div>
         <div>
             <label class="config-hover">Binance bot active<input id="bin" type="checkbox" onchange="changeConfigValue(this)" /></label>
             <table>
-                <tr><th>New timestamp:</th><td>{% templatetag openvariable %} time_stamp|default:'No data' {% templatetag closevariable %}</td></tr>
-                <tr><th>Minimal sell price:</th><td>{% templatetag openvariable %} min_sell_price|default:'No data' {% templatetag closevariable %}</td></tr>
-                <tr><th>Buy range:</th><td>{% templatetag openvariable %} buy_range|default:'No data' {% templatetag closevariable %}</td></tr>
+                <tr><th>New timestamp:</th><td>{{ time_stamp|default:'No data' }}</td></tr>
+                <tr><th>Minimal sell price:</th><td>{{ min_sell_price|default:'No data' }}</td></tr>
+                <tr><th>Buy range:</th><td>{{ buy_range|default:'No data' }}</td></tr>
             </table>
         </div>
     </div>
