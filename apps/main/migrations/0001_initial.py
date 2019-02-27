@@ -2,10 +2,10 @@
 
 import django.contrib.auth.models
 import django.contrib.auth.validators
-from django.db import migrations, models
 import django.utils.timezone
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.db import migrations, models
 
 
 def site_domen(apps, schema_editor):

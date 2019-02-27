@@ -1,4 +1,5 @@
-from django.db.models import Model, IntegerField
+from django.db.models import IntegerField, Model
+
 from apps.binance.models import AbstractBaseMinimalSellPriceModel, AbstractBasePriceStampModel
 
 
