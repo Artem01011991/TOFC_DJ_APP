@@ -1,6 +1,6 @@
 #other
 .idea/
-static/**/css/
+apps/**/static/**/css/
 config.ini
 
 # Byte-compiled / optimized / DLL files

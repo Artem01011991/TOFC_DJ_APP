@@ -28,6 +28,7 @@ class Command(BaseCommand):
                         os.path.join(settings.BASE_DIR, 'build/{folder}/sass'.format(folder=config.label)),
                         os.path.join(
                             settings.BASE_DIR,
+                            'apps/{folder}/'.format(folder=config.label),
                             settings.STATIC_ROOT,
                             '{folder}/css'.format(folder=config.label)
                         ),
