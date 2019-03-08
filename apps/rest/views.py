@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 
 from apps.main.settings import CONFIG_NAME_BY_ID
 # from TOFC_ETH.controling_opirations import modules_manipulations
-from TOFC_ETH.settings import CONF_PATH, HEROKU_APP_NAME  # SCHEDULER_IDS
+from TOFC_ETH.index.settings import CONF_PATH, HEROKU_APP_NAME  # SCHEDULER_IDS
 
 
 class ConfRestBaseView(APIView):
